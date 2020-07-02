@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FoodCourt.DAL.Repositories;
+using FoodCourt.DAL.Repositories.Contracts;
+using System;
 
 namespace FoodCourt.DAL
 {
@@ -9,10 +9,16 @@ namespace FoodCourt.DAL
         private readonly ApplicationDbContext _context;
 
         private bool disposed;
+        public IRestaurantRepository Restaurants { get; }
+        public IDishRepository Dishes { get; }
+        public IBasketItemRepository Basket { get; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
+            Restaurants = new RestaurantRepository(context);
+            Dishes = new DishRepository(context);
+            Basket = new BasketItemRepository(context);
         }
 
         public void Dispose()

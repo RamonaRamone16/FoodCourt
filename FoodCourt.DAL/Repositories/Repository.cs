@@ -1,10 +1,8 @@
 ﻿using FoodCourt.DAL.Entities;
 using FoodCourt.DAL.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FoodCourt.DAL.Repositories
 {
