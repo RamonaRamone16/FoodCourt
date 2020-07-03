@@ -25,4 +25,12 @@
     </div>
 }
 
+@{decimal dishesTotalCost = 0; }
+@foreach (BasketItemModel basketItem in Model)
+{
+    dishesTotalCost += basketItem.TotalCost;
+}
+
+<p class="text-right" style="margin-top: 75px; font-size: 25px"> Общая стоимость еды в корзине: @dishesTotalCost</p>
+
 
