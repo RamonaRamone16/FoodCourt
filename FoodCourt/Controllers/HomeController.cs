@@ -20,7 +20,7 @@ namespace FoodCourt.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Restaurant");
         }
 
         public IActionResult Privacy()

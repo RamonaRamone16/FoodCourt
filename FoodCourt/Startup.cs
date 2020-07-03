@@ -9,6 +9,9 @@ using FoodCourt.DAL.EntitiesConfiguration;
 using FoodCourt.DAL.Entities;
 using AutoMapper;
 using FoodCourt.DAL;
+using Microsoft.EntityFrameworkCore.Internal;
+using FoodCourt.Services.RestaurantService;
+using FoodCourt.Services.BasketService;
 
 namespace FoodCourt
 {
@@ -23,7 +26,6 @@ namespace FoodCourt
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             string connectionString = Configuration.GetConnectionString("MainConnection");
             var optionBuilder = new DbContextOptionsBuilder();
             optionBuilder.UseSqlServer(connectionString);
@@ -41,6 +43,9 @@ namespace FoodCourt
 
             services.AddSingleton<IUnitOfWorkFactory, UnitOfWorkFactory>();
 
+            services.AddSingleton<IRestaurantServices, RestaurantServices>();
+            services.AddSingleton<IBasketServices, BasketServices>();
+
             Mapper.Initialize(c => c.AddProfile(new MappingProfile()));
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -48,7 +53,6 @@ namespace FoodCourt
             services.AddRazorPages();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

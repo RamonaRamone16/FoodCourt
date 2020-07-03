@@ -1,0 +1,20 @@
+﻿@model IEnumerable<FoodCourt.Models.RestaurantModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Restaurants</h1>
+
+@foreach (RestaurantModel restaurant in Model)
+{
+    <div class="text-center mt-3 mb-3">
+        <h4>
+            <a asp-action="GetDishes" asp-controller="Restaurant" asp-route-id="@restaurant.Id">
+                @restaurant.Name
+            </a>
+        </h4>
+        <p> @restaurant.Description</p>
+    </div>
+    <hr />
+}

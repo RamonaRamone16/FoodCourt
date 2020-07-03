@@ -1,0 +1,28 @@
+﻿@model List<FoodCourt.Models.BasketItemModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Basket</h1>
+
+@{ var temp = "";}
+
+
+@foreach (BasketItemModel basketItem in Model)
+{
+    @if (temp != basketItem.RestaurantName)
+    {
+        <h4 style="margin-top: 65px">@basketItem.RestaurantName</h4>
+        <hr />
+        temp = basketItem.RestaurantName;
+    }
+    <div class="d-flex justify-content-between">
+        <b>@basketItem.Dish.Name</b>
+        <p>@basketItem.Dish.Price сом/порция</p>
+        <p>@basketItem.DishesCount порций</p>
+        <p>@basketItem.TotalCost сом</p>
+    </div>
+}
+
+
